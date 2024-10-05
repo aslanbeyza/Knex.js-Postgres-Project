@@ -24,8 +24,8 @@ export async function up(knex: Knex): Promise<void> {
         table.text('title').notNullable().unique().index();
         table.text('description').notNullable();
         table.integer('price').notNullable();
-        table.integer('author_id').references('id').inTable('author').notNullable();
-        table.integer('genre_id').references('genres.id').inTable('genres').notNullable();
+        table.integer('author_id').references('id').inTable('authors').notNullable();
+        table.integer('genre_id').references('id').inTable('genres').notNullable();
         table.date('created_at').defaultTo(knex.fn.now()); /* bunu her zaman şu ana ayarlamalıyız */
         table.date('updated_at').defaultTo(null); /* bunu her zaman şu ana ayarlamalıyız */
     })
@@ -35,6 +35,9 @@ export async function up(knex: Knex): Promise<void> {
 export async function down(knex: Knex): Promise<void> {
     /* yaptığımız tüm değişiklikleri geri alacağımız yerdeyiz yani down*/
     await knex.schema
-
+    /* -------------------------------------------------------------------------------------------- */
+    .dropTable('books')
+    .dropTable('genres')
+    .dropTable('authors');
 }
 

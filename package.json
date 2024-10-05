@@ -24,6 +24,7 @@
     "typescript-eslint": "^8.8.0"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.0.3",
     "dotenv": "^16.4.5",
     "knex": "^3.1.0",
     "pg": "^8.13.0"
