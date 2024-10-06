@@ -23,7 +23,7 @@ export async function seed(knex: Knex): Promise<void> {
     const authors_count = Number((await knex("authors").count().first())?.count || 0);
     const genres_count = Number((await knex("genres").count().first())?.count || 0);
 
-    console.log(`YAZAR SAYİSİ: ${authors_count}, TARZ SAYISI: ${genres_count}`);
+    console.log(`YAZAR SAYİSİ: ${authors_count}, TÜR SAYISI: ${genres_count}`);
 
     if (authors_count === 0 || genres_count === 0) {
         console.warn("YAZAR VEYA TÜR BULUNAMADI.");

@@ -31,3 +31,4 @@ knex seed:make authors_seed -x ts
 knex seed:make books_seed -x ts
  knex seed:run
  2.png 
+ nodemon .\src\index.ts  
