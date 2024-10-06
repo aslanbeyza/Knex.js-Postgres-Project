@@ -1,5 +1,5 @@
 import { Knex } from "knex";
-import { faker } from "@faker-js/faker/.";
+import { faker } from '@faker-js/faker';
 import { Genre } from '../src/types/index';
 
 const SEED_COUNT = 10;

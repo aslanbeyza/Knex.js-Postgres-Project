@@ -32,12 +32,11 @@ export async function up(knex: Knex): Promise<void> {
 }
 
 
-export async function down(knex: Knex): Promise<void> {
-    /* yaptığımız tüm değişiklikleri geri alacağımız yerdeyiz yani down*/
-    await knex.schema
-    /* -------------------------------------------------------------------------------------------- */
+/* export async function down(knex: Knex): Promise<void> {
+ */    /* yaptığımız tüm değişiklikleri geri alacağımız yerdeyiz yani down*/
+/*     await knex.schema
     .dropTable('books')
     .dropTable('genres')
     .dropTable('authors');
-}
+} */
 

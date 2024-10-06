@@ -27,5 +27,7 @@ olusturlan tablolar postgredede gorunmekte image.png
 knex migrate:rollback
 npm install @faker-js/faker Sahte kitapları veritabanımıza eklemede kullandık bunuu 
 knex seed:make genres_seed -x ts 
-
-
+knex seed:make authors_seed -x ts
+knex seed:make books_seed -x ts
+ knex seed:run
+ 2.png 

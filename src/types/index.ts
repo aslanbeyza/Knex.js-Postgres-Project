@@ -16,8 +16,8 @@ export interface Book {
     title:string;
     description:string;
     price:number;
-    author_id:number;
-    genre_id:number;
+    author_id:number|null;
+    genre_id:number|null;
     created_at:Date;
     updated_at:Date;
 }
