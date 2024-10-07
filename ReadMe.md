@@ -33,3 +33,7 @@ knex seed:run
 2.png
 nodemon .\src\index.ts  
 3.png ÖRNEKLERDEN BİRİNİ KOYDUM
+join kısmına geçtim 
+ join tabloları birleştirerek daha karmaşık sorgular yapabilir, verileri analiz edebilir ve içgörüler elde edebilirsiniz. Örneğin, hangi ürünlerin en çok sipariş edildiğini görmek için kullanıcılar ve siparişler arasındaki ilişkiyi inceleyebilirsiniz.
+bizim amacımız kodu çok fazla tekrarlamadan sonuçları ve devamını tek bir fonksiyonda birleştirmek
+5.png canım çıktı bunu getirene kadar allahun cezası sey 

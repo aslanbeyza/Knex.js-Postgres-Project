@@ -1,16 +1,37 @@
 import { onDatabaseConnect } from "./config/knex";
-import { removeAuthor } from './Examples/crud';
+import { createAuthorWithBook, getLastAuthor } from './Examples/transactions';
 
 onDatabaseConnect();
 
 const main = async () => {
   await onDatabaseConnect(); /* limit ve offset değerleri bunlar  terminalinde 2 tane görüncek yani*/
 
-/*   const book =await getBookById(201);
-  console.log("kitap başarı ile silindi",book); */
- 
-  await removeAuthor(407);
+
+ /* ??? */ const last_author = await getLastAuthor();    /* TRANSACTİON KISMINI ANLAMADIM HATALI ZATEN SOR BUNU */
+    console.log("beyza",last_author); 
+    await createAuthorWithBook();
+    const new_last_author = await getLastAuthor();
+    console.log("beyza",new_last_author); 
+
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------- *//*   const Topauthors = await getTopAuthorsWithBooksCount();
+  console.log("beyza",Topauthors);  */
   /* ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+  /* const authors = await getAuthorsWithBooksCount();
+  console.log("beyza",authors); */
+  /* ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+  /* Kitabın idsini, başlığını, yazar adını ve türünü alıyoruz */
+  /* const books =await getBooksWithAuthorAndGenre();
+console.log(books);
+ */
+
+  /* ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+  /*   const book =await getBookById(201);
+  console.log("kitap başarı ile silindi",book); */
+
+  /*   await removeAuthor(407); BU KISMI YAPAMADIM NEDENSE HATALI DELETE KISMI
+   */
 
   /*   const book = await updateBook(201, {
     author_id: 405,
