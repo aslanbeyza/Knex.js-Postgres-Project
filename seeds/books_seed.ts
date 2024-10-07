@@ -15,8 +15,8 @@ const createBook = (authors_count: number, genres_count: number): Partial<Book> 
     title: faker.lorem.sentence(3),
     description: faker.lorem.paragraph(5),
     price: faker.number.int({ min: 1, max: 1000 }),
-    author_id: authors_count > 0 ? faker.number.int({ min: 1, max: authors_count }) : null,
-    genre_id: genres_count > 0 ? faker.number.int({ min: 1, max: genres_count }) : null,
+    author_id: authors_count > 0 ? faker.number.int({ min: 1, max: authors_count }) :undefined ,
+    genre_id: genres_count > 0 ? faker.number.int({ min: 1, max: genres_count }) : undefined,
 });
 
 export async function seed(knex: Knex): Promise<void> {
