@@ -5,14 +5,12 @@ import { Author, Book } from "../types";
 export const getAllAuthors = async (limit: number, offset: number) => {
   /*    const authors = await knex('authors').select("id");
    */ /*   const authors = await knex('authors').orderBy("created_at","asc"); */
-
   const authors = await knex("authors")
     .limit(limit)
     .offset(offset)
     .orderBy("id", "asc");
   return authors;
 };
-
 export const getBooks = async (limit: number, offset: number) => {
   const books = await knex("books")
     .limit(limit)
@@ -20,22 +18,18 @@ export const getBooks = async (limit: number, offset: number) => {
     .orderBy("price", "desc");
   return books;
 };
-
 export const getAuthorById = async (id: number) => {
   const author = await knex("authors").where({ id }).first();
   return author;
 };
-
 export const getBookById = async (id: number) => {
   const book = await knex("books").where("id", "=", id).first();
   return book;
 };
-
 export const getGenreById = async (id:number)=>{
   const genre= await knex('genres').where({id}).first();
   return genre;
 }
-
 export const createAuthor = async(body:Partial<Author>) =>{
 /*   const author = await knex("authors").insert(body,"*"); */ 
 const author = await knex("authors").insert(body,"*");
@@ -50,6 +44,7 @@ export const  checkIfAuthorExists = async ( id?:number)=>{
     throw new Error("gecersiz yazar id kardes!!!!!!!")
   }
 }
+
 export const  checkIfGenreExists = async ( id?:number)=>{
   if(!id)throw new Error("Tür id si zorunlu alan!!!!!!!!");
   const genre =await getGenreById(id);
@@ -57,17 +52,27 @@ export const  checkIfGenreExists = async ( id?:number)=>{
     throw new Error("gecersiz tür id kardes!!!!!!!")
   }
 }
-export const createBook = async(body:Partial<Book>) =>{
-  await checkIfAuthorExists(body.author_id);
-  await checkIfGenreExists(body.genre_id);
-   const book = await knex("books").insert(body,"*")
-   return book[0];
+
+export const  checkIfBookExists = async ( id?:number)=>{
+  if(!id)throw new Error("Kitap id si zorunlu alan!!!!!!!!");
+  const book =await getBookById(id);
+  if(!book){
+    throw new Error("gecersiz kitap id kardes!!!!!!!")
+  }
 }
 export const updateAuthor = async(body:Partial<Author> ,id:number) =>{
   await checkIfAuthorExists(id);
    const author = await knex("authors").where({id}).update(body,'*');
    return author[0];
 }
+
+export const createBook = async(body:Partial<Book>) =>{
+  await checkIfAuthorExists(body.author_id);
+  await checkIfGenreExists(body.genre_id);
+   const book = await knex("books").insert(body,"*")
+   return book[0];
+}
+
 
 export const updateBook = async (id: number, body: Partial<Book>) => {
   try {
@@ -90,3 +95,21 @@ export const updateBook = async (id: number, body: Partial<Book>) => {
     throw error;
   }
 }
+
+export const removeBook = async(id:number)=>{
+   await checkIfBookExists(id);
+   await knex("books").where({id}).delete();
+   return `Kitap (ID: ${id}) başarıyla silindi.`; ;
+};
+
+export const removeAuthor = async(id:number)=>{
+   await checkIfAuthorExists(id);
+   await knex("authors").where({id}).delete();
+   const count_result = await knex('books').where({author_id:id}).count().first();
+   const book_result =Number(count_result?.count);
+   if(book_result > 0){
+     throw new Error("BU YAZARIN KİTABI VAR");
+   }
+   await knex("authors").where({id}).delete();
+};
+

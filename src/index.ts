@@ -1,12 +1,18 @@
 import { onDatabaseConnect } from "./config/knex";
-import { updateBook } from "./Examples/crud";
+import { removeAuthor } from './Examples/crud';
 
 onDatabaseConnect();
 
 const main = async () => {
   await onDatabaseConnect(); /* limit ve offset değerleri bunlar  terminalinde 2 tane görüncek yani*/
 
-  const book = await updateBook(201, {
+/*   const book =await getBookById(201);
+  console.log("kitap başarı ile silindi",book); */
+ 
+  await removeAuthor(407);
+  /* ---------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+  /*   const book = await updateBook(201, {
     author_id: 405,
     genre_id: 3,
     title: "abc",
@@ -17,7 +23,7 @@ const main = async () => {
     console.log("KİTAP BAŞARILI BİR ŞEKİLDE GÜNCELLENDİ.", book);
   } else {
     console.log("Kitap güncellenemedi veya bulunamadı.");
-  }
+  } */
 
   /* ---------------------------------------------------------------------------------------------------------------------------------------------------- */
   /*   const new_author = await createAuthor({name:"kdfsjlkds", bio:"ksdfjkskjdlfdks"});
